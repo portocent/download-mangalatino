@@ -103,14 +103,14 @@ def get_all_images(url, folder_name):
 
 def get_all_links(url):
 
-	# Obtener el contenido de la página
+	# Get content page
 	response = requests.get(url)
 	soup = BeautifulSoup(response.content, 'html.parser')
 
-	# Encontrar todos los elementos <li> con la clase 'list-group-item'
+	#Found list elements <li> , class 'list-group-item'
 	list_items = soup.find_all('li', class_='list-group-item')
 
-	# Extraer los enlaces
+	# Extract links
 	links = []
 	for item in list_items:
 		a_tag = item.find('a')
@@ -118,7 +118,6 @@ def get_all_links(url):
 			links.append({'url' : a_tag['href'], 'title' : a_tag.text.strip()})
 	return links
 
-# MAIN FUNCTION START
 def main(url):
 	links = get_all_links(url)
 	if not links:
